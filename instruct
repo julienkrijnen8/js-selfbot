@@ -1,0 +1,50 @@
+
+
+so first of all
+go to replit and login with your account
+then create a new repl. Make sure to select node.js.
+https://media.discordapp.net/attachments/848185891155214336/953359136593154058/unknown.png?width=742&height=468 
+
+then you will have by default a file created called index.js
+create a new file called server.js
+ in server.js paste this code:
+ 
+ 
+ 
+const express = require("express")
+
+const server = express()
+
+server.all("/", (req, res) => {
+  res.send("Website is up")
+})
+
+function keepAlive() {
+  server.listen(3000, () => {
+    console.log("Server is up")
+  })
+}
+
+module.exports = keepAlive
+
+
+after that, go back to index.js and paste this code:
+
+const Discord = require('discord.js-selfbot')
+const client = new Discord.Client({ws: { properties: { $browser: "Discord Client" }} })
+const keepAlive = require("./server")
+
+client.on("ready", () => {
+  console.log('Connected');
+  client.user.setStatus('idle')
+})
+
+keepAlive()
+client.login(process.env.TOKEN)
+
+
+then, you have to go to Secrets.
+
+and for value, you have to get your token. To keep your selfbot running,  you need to make an account at uptimerobot.com. The URL is your replit, and you don't need to pay for anything. This is my first tutorial, so I hope you'd like it.
+
+If you did it correctly you should see smth like this: https://images-ext-1.discordapp.net/external/f9enY2nSFZpHAAlwn1zyeyxBh5-WuIdURxwZ31nDDTE/https/i.imgur.com/2cDIR8O.png?width=384&height=468
